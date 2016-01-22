@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ftc_app
 FTC Android Studio project to create FTC Robot Controller app.
 
@@ -92,3 +93,7 @@ In this latest version of the FTC SDK (20150803_001) the following changes shoul
 
 T. Eng
 August 3, 2015
+||||||| merged common ancestors
+=======
+# FTC-Robot
+>>>>>>> 9839d3a6a211526bad9e13dbae6658fece707761
