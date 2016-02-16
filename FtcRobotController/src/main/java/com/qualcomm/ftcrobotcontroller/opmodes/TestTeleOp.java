@@ -89,10 +89,10 @@ public class TestTeleOp extends OpMode {
         /*motorRightBack.setDirection(DcMotor.Direction.REVERSE);
         motorRightFront.setDirection(DcMotor.Direction.REVERSE);*/
 
-        //motorArm = hardwareMap.dcMotor.get("a1");
-        //motorArm.setDirection(DcMotor.Direction.REVERSE);
+        motorArm = hardwareMap.dcMotor.get("a1");
+        motorArm.setDirection(DcMotor.Direction.REVERSE);
 
-        //arm = hardwareMap.servo.get("servo_1");
+        arm = hardwareMap.servo.get("servo_1");
         //claw = hardwareMap.servo.get("servo_6");
 
         // assign the starting position of the wrist and claw
@@ -135,8 +135,8 @@ public class TestTeleOp extends OpMode {
         motorRightFront.setPower(rightPower);
         motorRightBack.setPower(rightPower);
 
-        // update the position of the arm.
-        /*if (gamepad1.a) {
+   /*     // update the position of the arm.
+        if (gamepad1.a) {
             // if the A button is pushed on gamepad1, increment the position of
             // the arm servo.
             armPosition += armDelta;
@@ -147,11 +147,11 @@ public class TestTeleOp extends OpMode {
             // the arm servo.
             armPosition -= armDelta;
         }
-
-        // update the position of the claw
+*/
+        /*// update the position of the claw
         if (gamepad1.left_bumper) {
             clawPosition += clawDelta;
-        }
+        }*/
 
         if (gamepad1.left_trigger > 0.25) {
             //clawPosition -= clawDelta;
@@ -190,7 +190,7 @@ public class TestTeleOp extends OpMode {
 		 */
 
         telemetry.addData("Text", "*** Robot Data***");
-        //telemetry.addData("arm", "arm:  " + String.format("%.2f", armPosition));
+        telemetry.addData("arm", "arm:  " + String.format("%.2f", armPosition));
         //telemetry.addData("claw", "claw:  " + String.format("%.2f", clawPosition));
         telemetry.addData("left tgt pwr",  "left  pwr: " + String.format("%.2f", leftPower));
         telemetry.addData("right tgt pwr", "right pwr: " + String.format("%.2f", rightPower));
