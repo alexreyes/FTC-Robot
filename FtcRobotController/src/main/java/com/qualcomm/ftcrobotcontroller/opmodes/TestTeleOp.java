@@ -22,8 +22,8 @@ public class TestTeleOp extends OpMode {
      * Also, as the claw servo approaches 0, the claw opens up (drops the game element).
      */
     // TETRIX VALUES.
-    //final static double ARM_MIN_RANGE  = 0.20;
-    //final static double ARM_MAX_RANGE  = 0.90;
+    final static double ARM_MIN_RANGE  = 0.20;
+    final static double ARM_MAX_RANGE  = 0.90;
     //final static double CLAW_MIN_RANGE  = 0.20;
     //final static double CLAW_MAX_RANGE  = 0.7;
 
@@ -31,7 +31,7 @@ public class TestTeleOp extends OpMode {
     double armPosition;
 
     // Rate of change on the servo when the button is clicked
-    double armDelta = 0.1;
+    double armDelta = 0.015;
 
     // position of the claw servo
     //double clawPosition;
@@ -117,25 +117,40 @@ public class TestTeleOp extends OpMode {
 
         // tank drive
         // note that if y equal -1 then joystick is pushed all of the way forward.
-        float leftPower = -gamepad1.left_stick_y;
-        float rightPower = -gamepad1.right_stick_y;
+        float leftPower = gamepad1.left_stick_y;
+        float rightPower = gamepad1.right_stick_y;
+        float middlePower = 0;
+
+        if(gamepad1.a)
+        {
+            middlePower = 1f;
+        }
+
+        if(gamepad1.y)
+        {
+            middlePower = -1f;
+        }
 
         // clip the right/left values so that the values never exceed +/- 1
         rightPower = Range.clip(rightPower, -1, 1);
         leftPower = Range.clip(leftPower, -1, 1);
+        middlePower = Range.clip(middlePower, -1, 1);
 
         // scale the joystick value to make it easier to control
         // the robot more precisely at slower speeds.
         rightPower = (float)scaleInput(rightPower);
         leftPower =  (float)scaleInput(leftPower);
+        middlePower = (float)scaleInput(middlePower);
+        //Bacon strips
 
         // write the values to the motors
         motorLeftFront.setPower(leftPower);
         motorLeftBack.setPower(leftPower);
         motorRightFront.setPower(rightPower);
         motorRightBack.setPower(rightPower);
+        motorArm.setPower(middlePower);
 
-   /*     // update the position of the arm.
+        /*// update the position of the arm.
         if (gamepad1.a) {
             // if the A button is pushed on gamepad1, increment the position of
             // the arm servo.
@@ -146,9 +161,9 @@ public class TestTeleOp extends OpMode {
             // if the Y button is pushed on gamepad1, decrease the position of
             // the arm servo.
             armPosition -= armDelta;
-        }
-*/
-        /*// update the position of the claw
+        }*/
+
+        /* update the position of the claw
         if (gamepad1.left_bumper) {
             clawPosition += clawDelta;
         }*/
@@ -172,14 +187,14 @@ public class TestTeleOp extends OpMode {
 
         if (gamepad1.b) {
             clawPosition -= clawDelta;
-        }
+        }*/
 
-        // clip the position values so that they never exceed their allowed range.
+        //clip the position values so that they never exceed their allowed range.
         armPosition = Range.clip(armPosition, ARM_MIN_RANGE, ARM_MAX_RANGE);
-        clawPosition = Range.clip(clawPosition, CLAW_MIN_RANGE, CLAW_MAX_RANGE);
-        */
+        //clawPosition = Range.clip(clawPosition, CLAW_MIN_RANGE, CLAW_MAX_RANGE);
+
         // write position values to the wrist and claw servo
-        //arm.setPosition(armPosition);
+        arm.setPosition(armPosition);
         //claw.setPosition(clawPosition);
 
 		/*
